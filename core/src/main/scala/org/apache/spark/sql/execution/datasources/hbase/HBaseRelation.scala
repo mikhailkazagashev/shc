@@ -59,7 +59,6 @@ private[sql] class DefaultSource extends RelationProvider with CreatableRelation
     parameters: Map[String, String],
     data: DataFrame): BaseRelation = {
     val relation = HBaseRelation(parameters, Some(data.schema))(sqlContext)
-    relation.createTableIfNotExist()
     relation.insert(data, false)
     relation
   }
